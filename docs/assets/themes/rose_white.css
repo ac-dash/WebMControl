@@ -1,0 +1,34 @@
+header {
+    background-color: #e74c3c;
+    color: #ffffff;
+}
+
+.sidebar {
+    background-color: #c0392b;
+    color: #ffffff;
+}
+
+.sidebar li:hover {
+    background-color: #a93226;
+}
+
+.main-content {
+    background-color: #ffffff;
+    color: #2c3e50;
+}
+
+.task-form button {
+    background-color: #e74c3c;
+}
+
+.task-form button:hover {
+    background-color: #c0392b;
+}
+
+body {
+    background-color: #f9f9f9;
+}
+
+.container {
+    background-color: #f9f9f9;
+}
