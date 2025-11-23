@@ -1,4 +1,4 @@
-const GITHUB_TOKEN = 'YOUR_GITHUB_TOKEN'; // Updated by setup.py
+const GITHUB_TOKEN = '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'; // Updated by setup.py
 const REPO_NAME = 'ac-dash/WebMControl-Data';
 let currentClientId = null;
 let currentUser = null;
@@ -146,3 +146,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
