@@ -7,7 +7,7 @@ let currentUser = null;
 async function attemptLogin() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    const url = `https://api.github.com/repos/${REPO_NAME}/data/accounts.json`;
+    const url = `https://corsproxy.io/?https://api.github.com/repos/${REPO_NAME}/data/accounts.json`;
 
     try {
         const response = await fetch(url, {
@@ -44,7 +44,7 @@ async function attemptLogin() {
 
 // Load clients for map and list
 async function loadClients() {
-    const url = `https://api.github.com/repos/${REPO_NAME}/data/clients.json`;
+    const url = `https://corsproxy.io/?https://api.github.com/repos/${REPO_NAME}/data/clients.json`;
     try {
         const response = await fetch(url, {
             headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github.v3+json' }
@@ -91,7 +91,7 @@ function showTab(tabId) {
 
 // Load accounts for management
 async function loadAccounts() {
-    const url = `https://api.github.com/repos/${REPO_NAME}/data/accounts.json`;
+    const url = `https://corsproxy.io/?https://api.github.com/repos/${REPO_NAME}/data/accounts.json`;
     try {
         const response = await fetch(url, {
             headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github.v3+json' }
@@ -146,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
 
 
 
