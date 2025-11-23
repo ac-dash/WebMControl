@@ -6,7 +6,7 @@ const HEADERS = {
     "Accept": "application/vnd.github.v3+json",
     "Content-Type": "application/json"
 };
-let ENCRYPTION_KEY = "your_encryption_key_here";
+let ENCRYPTION_KEY = "ifyouscaredgetthefuckoutthepit";
 let cipher = null; // Placeholder for encryption library, adapt as needed
 let currentUser = null;
 
@@ -204,3 +204,4 @@ function switchTheme() {
     document.getElementById("theme").href = `assets/themes/${theme}.css`;
 
 }
+
