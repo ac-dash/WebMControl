@@ -7,7 +7,7 @@ let currentUser = null;
 async function attemptLogin() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-    const url = `https://api.github.com/repos/${REPO_NAME}/contents/data/accounts.json`;
+    const url = `https://api.github.com/repos/${REPO_NAME}/data/accounts.json`;
 
     try {
         const response = await fetch(url, {
@@ -146,4 +146,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
 
