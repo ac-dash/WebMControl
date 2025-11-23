@@ -44,7 +44,7 @@ async function attemptLogin() {
 
 // Load clients for map and list
 async function loadClients() {
-    const url = `https://api.github.com/repos/${REPO_NAME}/contents/clients`;
+    const url = `https://api.github.com/repos/${REPO_NAME}/data/clients.json`;
     try {
         const response = await fetch(url, {
             headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github.v3+json' }
@@ -91,7 +91,7 @@ function showTab(tabId) {
 
 // Load accounts for management
 async function loadAccounts() {
-    const url = `https://api.github.com/repos/${REPO_NAME}/contents/data/accounts.json`;
+    const url = `https://api.github.com/repos/${REPO_NAME}/data/accounts.json`;
     try {
         const response = await fetch(url, {
             headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github.v3+json' }
@@ -146,5 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
 
 
