@@ -1,4 +1,4 @@
-const PAT = "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";
+const PAT = "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";
 const DATA_REPO = "ac-dash/WebMControl-Data";
 const BASE_URL = `https://api.github.com/repos/${DATA_REPO}`;
 const HEADERS = {
@@ -202,4 +202,5 @@ async function submitTask() {
 function switchTheme() {
     const theme = document.getElementById("themeSelect").value;
     document.getElementById("theme").href = `assets/themes/${theme}.css`;
+
 }
